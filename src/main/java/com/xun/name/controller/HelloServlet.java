@@ -1,15 +1,9 @@
 package com.xun.name.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,15 +15,14 @@ import java.util.Date;
  * @Description:
  * @Version 1.8
  */
-@RestController
-@RequestMapping("/hello")
-public class HelloServlet {
+@Controller
+public class HelloServlet{
 
-    @RequestMapping(method = RequestMethod.GET)
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @GetMapping(value = "/hello")
+    public String  hello(Model model){
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String currentTime = dateFormat.format(new Date());
-        req.setAttribute("currentTime", currentTime);
-        req.getRequestDispatcher("/WEB-INF/jsp/hello.jsp").forward(req, resp);
+        model.addAttribute("currentTime","当前时间:"+ currentTime);
+        return "hello";
     }
 }
