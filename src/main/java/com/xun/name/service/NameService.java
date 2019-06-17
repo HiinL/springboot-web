@@ -1,5 +1,7 @@
 package com.xun.name.service;
 
+import com.xun.name.bean.SysUser;
+
 /**
  * @ClassName
  * @author: Uny
@@ -8,4 +10,7 @@ package com.xun.name.service;
  * @Version 1.8
  */
 public interface NameService {
+    String getTime();
+
+    SysUser findById(Integer id);
 }
